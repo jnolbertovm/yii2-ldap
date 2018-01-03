@@ -1,0 +1,21 @@
+{
+    "name": "nolbertovilchez/yii2-ldap",
+    "description": "Plugin Using LDAP yii2",
+    "type": "library",
+    "require": {
+        "adldap2/adldap2": "^8.0",
+        "yiisoft/yii2": "2.0.13.1"
+    },
+    "authors": [
+        {
+            "name": "José Nolberto Vilchez Moreno",
+            "email": "jnolbertovm@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "nolbertovilchez\\yii2\\": ""
+        }
+    }
+}

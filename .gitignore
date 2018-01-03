@@ -1,0 +1,6 @@
+nbproject/*
+vendor/*
+node_modules/*
+composer.lock
+*.lock
+*.log
