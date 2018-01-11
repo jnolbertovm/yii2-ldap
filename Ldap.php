@@ -43,11 +43,23 @@ class Ldap extends Component {
     }
 
     public function search($username) {
-        $filter  = "(samaccountname={$username})";
-        $result  = ldap_search($this->_conn, $this->_options['dc'], $filter);
-        $entries = ldap_get_entries($this->_conn, $result);
+        $response['data']    = [];
+        $response['estado']  = true;
+        $response['mensaje'] = "Usuario obtenido exitosamente";
+        try {
+            if (!ldap_bind($this->_conn, $this->_options['admin_username'] . "@" . $this->_options['domain'], $this->_options['admin_password'])) {
+                $error = "NRO: " . ldap_errno($this->_conn) . "<br/>DESCRIPCION: " . ldap_error($this->_conn) . "<br/>";
+                throw new Exception("Error al autenticar al servidor - {$error}", 900);
+            }
+            $filter           = "(samaccountname={$username})";
+            $result           = ldap_search($this->_conn, $this->_options['dc'], $filter);
+            $response['data'] = ldap_get_entries($this->_conn, $result);
+        } catch (\Exception $ex) {
+            $response['estado']  = false;
+            $response['mensaje'] = $ex->getMessage();
+        }
         $this->close();
-        return $entries;
+        return $response;
     }
 
     public function create($params) {
