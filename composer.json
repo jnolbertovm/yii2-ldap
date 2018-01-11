@@ -3,7 +3,6 @@
     "description": "Plugin Using LDAP yii2",
     "type": "library",
     "require": {
-        "adldap2/adldap2": "^8.0",
         "yiisoft/yii2": "2.0.13.1"
     },
     "authors": [
